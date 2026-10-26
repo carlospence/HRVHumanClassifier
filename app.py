@@ -58,71 +58,102 @@ def _home_dashboard_counts() -> dict[str, int]:
     }
 
 
+def _theme_is_dark() -> bool:
+    """True when Streamlit is using its dark theme (falls back to light)."""
+    try:
+        theme = getattr(st.context, "theme", None)
+        if theme is not None and getattr(theme, "type", None):
+            return str(theme.type).lower() == "dark"
+    except Exception:
+        pass
+    return False
+
+
 def _render_home() -> None:
     user = require_access()
     if st.session_state.get("hc_logged_home") != user["access_code"]:
         log_activity("view_home", detail={"page": "home"})
         st.session_state["hc_logged_home"] = user["access_code"]
 
-    st.markdown(
+    if _theme_is_dark():
+        theme_vars = """
+          --hc-ink: #e8eef4;
+          --hc-muted: #9aa8b5;
+          --hc-accent: #3db8ab;
+          --hc-accent-soft: #1a3330;
+          --hc-card-bg: rgba(28, 36, 48, 0.88);
+          --hc-card-border: rgba(232, 238, 244, 0.10);
+          --hc-app-bg:
+            radial-gradient(1200px 600px at 10% -10%, #163532 0%, transparent 55%),
+            linear-gradient(180deg, #12171f 0%, #0e1319 100%);
         """
+    else:
+        theme_vars = """
+          --hc-ink: #1a2332;
+          --hc-muted: #5c6b7a;
+          --hc-accent: #0d7a6f;
+          --hc-accent-soft: #e6f3f1;
+          --hc-card-bg: rgba(255, 255, 255, 0.72);
+          --hc-card-border: rgba(26, 35, 50, 0.08);
+          --hc-app-bg:
+            radial-gradient(1200px 600px at 10% -10%, #dceeea 0%, transparent 55%),
+            linear-gradient(180deg, #f7f4ef 0%, #eef2f4 100%);
+        """
+
+    st.markdown(
+        f"""
         <style>
-          :root {
-            --hc-ink: #1a2332;
-            --hc-muted: #5c6b7a;
-            --hc-accent: #0d7a6f;
-            --hc-accent-soft: #e6f3f1;
-          }
-          .stApp {
-            background:
-              radial-gradient(1200px 600px at 10% -10%, #dceeea 0%, transparent 55%),
-              linear-gradient(180deg, #f7f4ef 0%, #eef2f4 100%);
-          }
-          .hc-hero {
+          :root {{
+            {theme_vars}
+          }}
+          .stApp {{
+            background: var(--hc-app-bg);
+          }}
+          .hc-hero {{
             font-family: "Fraunces", "Palatino Linotype", Palatino, serif;
             font-size: clamp(2.2rem, 4vw, 3.2rem);
             font-weight: 600;
             color: var(--hc-ink);
             margin: 0.2rem 0 0.4rem 0;
             line-height: 1.1;
-          }
-          .hc-sub { color: var(--hc-muted); font-size: 1.05rem; max-width: 42rem; }
-          .hc-dash {
+          }}
+          .hc-sub {{ color: var(--hc-muted); font-size: 1.05rem; max-width: 42rem; }}
+          .hc-dash {{
             display: grid;
             grid-template-columns: repeat(4, minmax(0, 1fr));
             gap: 0.85rem;
             margin: 1.1rem 0 1.4rem 0;
-          }
-          @media (max-width: 900px) {
-            .hc-dash { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-          }
-          .hc-dash-card {
-            background: rgba(255, 255, 255, 0.72);
-            border: 1px solid rgba(26, 35, 50, 0.08);
+          }}
+          @media (max-width: 900px) {{
+            .hc-dash {{ grid-template-columns: repeat(2, minmax(0, 1fr)); }}
+          }}
+          .hc-dash-card {{
+            background: var(--hc-card-bg);
+            border: 1px solid var(--hc-card-border);
             border-radius: 12px;
             padding: 0.95rem 1rem 0.85rem 1rem;
-          }
-          .hc-dash-label {
+          }}
+          .hc-dash-label {{
             color: var(--hc-muted);
             font-size: 0.82rem;
             font-weight: 600;
             letter-spacing: 0.02em;
             text-transform: uppercase;
             margin: 0 0 0.35rem 0;
-          }
-          .hc-dash-value {
+          }}
+          .hc-dash-value {{
             font-family: "Fraunces", "Palatino Linotype", Palatino, serif;
             font-size: 2rem;
             font-weight: 600;
             color: var(--hc-ink);
             line-height: 1;
             margin: 0;
-          }
-          .hc-dash-hint {
+          }}
+          .hc-dash-hint {{
             color: var(--hc-muted);
             font-size: 0.8rem;
             margin: 0.4rem 0 0 0;
-          }
+          }}
         </style>
         """,
         unsafe_allow_html=True,
