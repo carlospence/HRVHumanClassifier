@@ -1,0 +1,6 @@
+activity_log.jsonl
+*.tmp
+access_codes.json.tmp
+app_settings.json
+data/tasks/
+data/training/

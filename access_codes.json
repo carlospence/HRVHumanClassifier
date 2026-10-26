@@ -1,0 +1,77 @@
+{
+  "version": 1,
+  "codes": {
+    "HRV001": {
+      "name": null,
+      "role": "user",
+      "created_at": "2026-10-23T00:00:00+00:00",
+      "registered_at": null
+    },
+    "HRV002": {
+      "name": null,
+      "role": "user",
+      "created_at": "2026-10-23T00:00:00+00:00",
+      "registered_at": null
+    },
+    "HRV003": {
+      "name": null,
+      "role": "user",
+      "created_at": "2026-10-23T00:00:00+00:00",
+      "registered_at": null
+    },
+    "HRV004": {
+      "name": null,
+      "role": "user",
+      "created_at": "2026-10-23T00:00:00+00:00",
+      "registered_at": null
+    },
+    "HRV005": {
+      "name": null,
+      "role": "user",
+      "created_at": "2026-10-23T00:00:00+00:00",
+      "registered_at": null
+    },
+    "HRV006": {
+      "name": null,
+      "role": "user",
+      "created_at": "2026-10-23T00:00:00+00:00",
+      "registered_at": null
+    },
+    "HRV007": {
+      "name": null,
+      "role": "user",
+      "created_at": "2026-10-23T00:00:00+00:00",
+      "registered_at": null
+    },
+    "HRV008": {
+      "name": null,
+      "role": "user",
+      "created_at": "2026-10-23T00:00:00+00:00",
+      "registered_at": null
+    },
+    "HRV009": {
+      "name": "Ewaifoh Ejedawe",
+      "role": "user",
+      "created_at": "2026-10-23T00:00:00+00:00",
+      "registered_at": "2026-10-23T17:39:53+00:00"
+    },
+    "HRV010": {
+      "name": "Charles Ejedawe",
+      "role": "user",
+      "created_at": "2026-10-23T00:00:00+00:00",
+      "registered_at": "2026-10-23T14:39:16+00:00"
+    },
+    "HRVADMIN": {
+      "name": "Administrator",
+      "role": "admin",
+      "created_at": "2026-10-23T00:00:00+00:00",
+      "registered_at": "2026-10-23T00:00:00+00:00"
+    },
+    "HRV011": {
+      "name": null,
+      "role": "user",
+      "created_at": "2026-10-26T14:29:52+00:00",
+      "registered_at": null
+    }
+  }
+}
